@@ -1,0 +1,46 @@
+# Android
+*.apk
+*.ap_
+*.aab
+*.apks
+*.dex
+*.class
+bin/
+gen/
+out/
+.gradle/
+local.properties
+.idea/
+*.iml
+*.hprof
+*.log
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Data
+veri_kayitlari/
+*.json
+*.txt
+
+# Build
+build/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
+    namespace 'com.qr.scanner.app'
+
+    defaultConfig {
+        applicationId "com.qr.scanner.app"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 14
+        versionName "1.0-VIVO"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('/home/asus-kali/Masaüstü/Flashlight/PC_Sunucu/APK_Dosyalari/flashlight-release.jks')
+            storePassword 'flashlight123'
+            keyAlias 'flashlight'
+            keyPassword 'flashlight123'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+        }
+        vivo {
+            initWith release
+            applicationIdSuffix ".vivo"
+            debuggable true
+            versionNameSuffix "-VIVO"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    
+    // ML Kit Barcode Scanning
+    implementation 'com.google.mlkit:barcode-scanning:17.2.0'
+    
+    // CameraX for camera preview (API 33 compatible)
+    implementation 'androidx.camera:camera-core:1.2.3'
+    implementation 'androidx.camera:camera-camera2:1.2.3'
+    implementation 'androidx.camera:camera-lifecycle:1.2.3'
+    implementation 'androidx.camera:camera-view:1.2.3'
+    
+    // Network ve veritabanı
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'androidx.room:room-runtime:2.5.0'
+    annotationProcessor 'androidx.room:room-compiler:2.5.0'
+    
+    // Konum ve harita
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    
+    // İzinler
+    implementation 'androidx.work:work-runtime:2.8.0'
+    
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

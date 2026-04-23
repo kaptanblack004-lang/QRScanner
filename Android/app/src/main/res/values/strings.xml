@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR Tarayici</string>
+    <string name="scan_title">QR Kod Tarayici</string>
+    <string name="scan_button">Tarama Baslat</string>
+    <string name="history_button">Gecmis</string>
+    <string name="settings_button">Ayarlar</string>
+    <string name="permission_denied">Izin reddedildi</string>
+    <string name="permission_required">QR Tarayici için kamera izni gerekli</string>
+    <string name="scan_result">QR kodu tarayinca sonucu gorun</string>
+</resources>

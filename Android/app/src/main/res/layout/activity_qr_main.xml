@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1a1a1a"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="QR Scanner Pro"
+        android:textSize="24sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="#2196F3"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Camera Preview -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#000000"
+        android:layout_marginBottom="16dp">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+
+    </FrameLayout>
+
+    <!-- Status Text -->
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hazirlaniyor..."
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="#333333"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Scan Result -->
+    <TextView
+        android:id="@+id/scanResult"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="QR kodu tarayinca sonuc burada görünecek"
+        android:textSize="14sp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="#2d2d2d"
+        android:layout_marginBottom="16dp"
+        android:maxLines="3"
+        android:ellipsize="end" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/scanButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Taramayi Baslat"
+            android:textColor="#ffffff"
+            android:background="#4CAF50"
+            android:layout_marginEnd="4dp"
+            android:padding="10dp"
+            android:onClick="toggleScanning" />
+
+        <Button
+            android:id="@+id/cameraSwitchButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Kamera Degistir"
+            android:textColor="#ffffff"
+            android:background="#2196F3"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:padding="10dp"
+            android:onClick="switchCamera" />
+
+        <Button
+            android:id="@+id/collectDataButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Veri Topla"
+            android:textColor="#ffffff"
+            android:background="#FF9800"
+            android:layout_marginStart="4dp"
+            android:padding="10dp"
+            android:onClick="collectAllData" />
+
+    </LinearLayout>
+
+    <!-- Settings Button -->
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ayarlar"
+        android:textColor="#ffffff"
+        android:background="#9C27B0"
+        android:padding="12dp"
+        android:onClick="openSettings" />
+
+</LinearLayout>
